@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- --- SEO META TAGS --- -->
+<title>GPO Dashboard - Premium Guest Post Outreach Service by Sonu Kumar</title>
+<meta name="description" content="Access a curated list of high-authority websites for guest posting. Filter by DA, DR, Traffic, and Niche to boost your SEO outreach with GPO Dashboard.">
+<meta name="keywords" content="GPO Dashboard, Guest Post Outreach, SEO Service, Backlinks, High DA Guest Posts, Link Building Tool, Sonu Kumar SEO">
+<meta name="author" content="Sonu Kumar">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/">
+
+<!-- --- OPEN GRAPH / FACEBOOK --- -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com/">
+<meta property="og:title" content="GPO Dashboard - Expert Guest Post Marketplace">
+<meta property="og:description" content="Find the best high-traffic sites for your backlink strategy. ⚡ Live Sync with premium outreach databases.">
+<meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+
+<!-- --- TWITTER --- -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yourdomain.com/">
+<meta property="twitter:title" content="GPO Dashboard - High DA Guest Post List">
+<meta property="twitter:description" content="Premium Guest Post Outreach made easy. Filter, Compare, and Buy guest posts at the best prices.">
+<meta property="twitter:image" content="https://yourdomain.com/twitter-image.jpg">
+
+<!-- --- SCHEMA.ORG (JSON-LD) --- -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GPO Dashboard",
+  "operatingSystem": "Web",
+  "applicationCategory": "SEO Tool",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Sonu Kumar"
+  }
+}
+</script>
+
+<!-- --- EXTERNAL ASSETS --- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* --- ULTRA WHITE THEME VARIABLES --- */
+:root {
+    --bg-light: #f8fafc;
+    --sidebar-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --primary-color: #3b82f6;
+    --primary-glow: rgba(59, 130, 246, 0.25);
+    --accent-green: #10b981;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --font-main: 'Outfit', sans-serif;
+    --transition-fast: 0.2s ease;
+    --transition-mid: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- RESET & BASIC --- */
+* { box-sizing: border-box; transition: background var(--transition-fast), border var(--transition-fast), box-shadow var(--transition-fast); }
+body { 
+    margin: 0; padding: 0; 
+    background-color: var(--bg-light);
+    background-image: radial-gradient(circle at top right, #eef2ff 0%, transparent 60%);
+    color: var(--text-main); 
+    font-family: var(--font-main);
+    overflow-x: hidden; 
+}
+
+/* --- LAYOUT --- */
+.app-container {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Compact sidebar width */
+    min-height: 100vh;
+    width: 100vw; 
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid var(--border-color);
+    padding: 20px; 
+    height: 100vh; position: sticky; top: 0;
+    overflow-y: auto; z-index: 20;
+    display: flex; flex-direction: column;
+}
+
+.brand-logo {
+    font-size: 22px; font-weight: 800;
+    color: var(--primary-color); margin-bottom: 25px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+}
+
+.filter-group { margin-bottom: 15px; }
+.filter-label { font-size: 10px; color: var(--text-muted); margin-bottom: 6px; display: block; text-transform: uppercase; font-weight: 700; letter-spacing: 0.8px; }
+
+.input-style { 
+    width: 100%; background: #ffffff; border: 1px solid var(--border-color); padding: 10px 12px; 
+    border-radius: 8px; font-size: 12px; outline: none; transition: var(--transition-mid); 
+}
+.input-style:focus { 
+    border-color: var(--primary-color); 
+    box-shadow: 0 0 0 4px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.dual-input { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.btn-reset {
+    width: 100%; background: #ffffff; color: var(--text-muted);
+    border: 1px solid var(--border-color); padding: 10px; cursor: pointer;
+    border-radius: 8px; margin-top: 10px; font-weight: 600; font-size: 12px;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    transition: var(--transition-mid);
+}
+.btn-reset:hover { 
+    border-color: var(--primary-color); color: var(--primary-color); 
+    background: #f0f9ff; transform: scale(1.02); 
+}
+
+#status { margin-top: 15px; font-size: 11px; color: var(--accent-green); text-align: center; font-weight: 700; opacity: 0.8; }
+
+/* --- MAIN CONTENT --- */
+.main-content { display: flex; flex-direction: column; height: 100vh; background: #ffffff; overflow: hidden; }
+.table-container { flex: 1; overflow: auto; animation: slideUp 0.6s ease-out; width: 100%; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; white-space: nowrap; table-layout: auto; }
+thead th { 
+    background: rgba(248, 250, 252, 0.98); padding: 16px 12px; position: sticky; top: 0; 
+    border-bottom: 2px solid var(--border-color); z-index: 10; text-align: left; 
+    font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+tbody tr { transition: var(--transition-fast); }
+tbody tr:hover { background: #f8fafc; z-index: 5; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
+tbody td { padding: 14px 12px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+
+/* Website Link & Favicon */
+.site-link { 
+    color: var(--primary-color); font-weight: 700; text-decoration: none; 
+    display: flex; align-items: center; gap: 10px; transition: var(--transition-fast);
+}
+.site-link img { width: 18px; height: 18px; border-radius: 50%; transition: transform 0.3s; }
+.site-link:hover img { transform: rotate(360deg) scale(1.2); }
+.site-link:hover { color: #1d4ed8; text-decoration: underline; }
+
+/* Badges */
+.badge { padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; display: inline-block; border: 1px solid transparent; transition: transform 0.2s; }
+.badge:hover { transform: translateY(-2px) scale(1.05); }
+.badge-niche { background: #f3e8ff; color: #7c3aed; border-color: #e9d5ff; }
+.badge-country { background: #e0f2fe; color: #0284c7; border-color: #bae6fd; }
+.badge-type { background: #ecfdf5; color: #059669; border-color: #a7f3d0; }
+
+.metric-val { font-family: 'Courier New', monospace; font-weight: 800; color: var(--text-main); font-size: 14px; }
+.price-tag { color: var(--accent-green); font-weight: 900; font-size: 15px; }
+
+/* --- ACTION BUTTONS --- */
+.action-box { display: flex; gap: 8px; align-items: center; }
+.btn-buy { 
+    background: var(--primary-color); color: white; border: none; padding: 8px 16px; 
+    border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 11px; 
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); transition: var(--transition-mid);
+    height: 36px;
+}
+.btn-offer { 
+    background: #ffffff; color: var(--text-main); border: 2px solid var(--border-color); 
+    padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 11px; 
+    transition: var(--transition-mid); height: 36px;
+}
+.btn-buy:hover { background: #1d4ed8; transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+.btn-offer:hover { border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-3px) scale(1.05); }
+
+/* Compare Label Style */
+.compare-label {
+    font-size: 8px;
+    font-weight: 900;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    display: block;
+    text-align: center;
+}
+
+/* --- MODALS --- */
+.modal-overlay {
+    display: none; position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px);
+    z-index: 9999; justify-content: center; align-items: center;
+}
+.modal-box {
+    background: #ffffff; padding: 35px; border-radius: 30px;
+    width: 95%; max-width: 500px; max-height: 90vh;
+    overflow-y: auto; position: relative;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+.modal-close {
+    position: absolute; top: 20px; right: 20px;
+    background: #f1f5f9; border: none; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; font-size: 22px; transition: 0.3s;
+}
+.modal-close:hover { background: #fee2e2; color: #ef4444; transform: rotate(90deg); }
+
+.modal-header { text-align: center; margin-bottom: 25px; }
+.modal-header h2 { margin: 0; font-size: 24px; color: var(--text-main); font-weight: 900; letter-spacing: -0.5px; }
+.modal-header p { margin: 8px 0 0; color: var(--primary-color); font-weight: 700; font-size: 15px; }
+
+/* Comparison Grid */
+.comparison-container {
+    background: #f8fafc; border-radius: 20px;
+    padding: 10px; margin-bottom: 15px; border: 1px solid var(--border-color);
+}
+.comparison-row { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px dashed #e2e8f0; transition: 0.2s; }
+.comparison-row:last-child { border-bottom: none; }
+.comparison-row:hover:not(.our-price) { background: #ffffff; transform: scale(1.02); border-radius: 10px; border-bottom-color: transparent; }
+
+/* HIGHLIGHTED PRICE SECTION */
+.comparison-row.our-price { 
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); 
+    margin: 5px; padding: 20px; border-radius: 15px; border: 2px solid var(--primary-color);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
+    animation: pulseGlow 2s infinite;
+}
+.our-price .comp-label { color: var(--primary-color); font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+.our-price .comp-value { color: var(--accent-green); font-size: 22px; font-weight: 900; text-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+.comp-label { font-weight: 700; color: var(--text-muted); font-size: 13px; }
+.comp-value { font-weight: 800; color: var(--text-main); font-size: 14px; }
+
+/* Social Grid */
+.social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.social-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px; border-radius: 12px;
+    text-decoration: none; color: var(--text-main);
+    font-size: 14px; font-weight: 700;
+    border: 1px solid var(--border-color); transition: var(--transition-mid);
+    background: #fff;
+}
+.social-btn:hover { background: #f8fafc; border-color: var(--primary-color); transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
+
+/* Social Icons Colors */
+.btn-wa i { color: #25D366; } .btn-tg i { color: #0088cc; }
+.btn-em i { color: #EA4335; } .btn-li i { color: #0077b5; }
+.btn-fb i { color: #1877F2; } .btn-in i { color: #E4405F; }
+.btn-yt i { color: #FF0000; } .btn-rd i { color: #FF4500; }
+
+/* Pagination Styles */
+.pagination-wrapper { 
+    padding: 15px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 8px; 
+    border-top: 1px solid var(--border-color);
+    background: #f8fafc;
+}
+.page-btn { 
+    padding: 8px 14px; 
+    border: 1px solid var(--border-color); 
+    background: white; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    font-size: 13px; 
+    font-weight: 700; 
+    transition: 0.3s;
+    color: var(--text-muted);
+}
+.page-btn:hover:not(.disabled) { 
+    border-color: var(--primary-color); 
+    color: var(--primary-color); 
+    transform: translateY(-2px); 
+}
+.page-btn.active { 
+    background: var(--primary-color); 
+    color: white; 
+    border-color: var(--primary-color); 
+    box-shadow: 0 4px 10px var(--primary-glow); 
+}
+.page-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #f1f5f9;
+}
+
+@media(max-width: 1024px) { .app-container { grid-template-columns: 240px 1fr; } }
+@media(max-width: 900px) { .app-container { display: block; } .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); } }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="brand-logo" onclick="window.location.reload()"><i class="fas fa-link"></i> GPO DASHBOARD</div>
+        
+        <div class="filter-group">
+            <label class="filter-label">Search Website</label>
+            <input id="search" class="input-style" placeholder="Domain name...">
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Niche</label>
+            <select id="niche" class="input-style"><option value="All">All Categories</option></select>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Country</label>
+            <select id="country" class="input-style"><option value="All">All Locations</option></select>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Max Price ($)</label>
+            <input id="maxPrice" type="number" class="input-style" placeholder="0.00">
+        </div>
+
+        <div class="dual-input">
+            <div class="filter-group">
+                <label class="filter-label">Min DA</label>
+                <input id="minDA" type="number" class="input-style" placeholder="0">
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Min DR</label>
+                <input id="minDR" type="number" class="input-style" placeholder="0">
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Min Traffic</label>
+            <input id="minTraffic" type="number" class="input-style" placeholder="0">
+        </div>
+
+        <button class="btn-reset" id="reset"><i class="fas fa-sync-alt"></i> Refresh Filters</button>
+        <div id="status">Syncing Database...</div>
+    </aside>
+
+    <main class="main-content">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Website</th>
+                        <th>DA</th>
+                        <th>DR</th>
+                        <th>Traffic</th>
+                        <th>Country</th>
+                        <th>Niche</th>
+                        <th>Type</th>
+                        <th>Follow</th>
+                        <th>Restricted</th>
+                        <th style="color:var(--accent-green);">Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="rows">
+                    <tr><td colspan="11" style="text-align:center; padding:100px; color:var(--text-muted); font-size:16px;"><i class="fas fa-spinner fa-spin"></i> Fetching Live Data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="pagination" class="pagination-wrapper"></div>
+    </main>
+</div>
+
+<!-- OFFER MODAL (Comparison) -->
+<div id="offerModal" class="modal-overlay">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <div class="modal-header">
+            <h2>Market Comparison</h2>
+            <p id="offerSiteName">website.com</p>
+        </div>
+        <div class="comparison-container" id="priceComparisonList"></div>
+        <div style="text-align:center; margin-top:20px;">
+            <p style="font-size:12px; color:var(--text-muted); font-weight:600;">SAVE UP TO 40% WITH OUR EXCLUSIVE PRICING</p>
+        </div>
+    </div>
+</div>
+
+<!-- BUY MODAL (Contact) -->
+<div id="contactModal" class="modal-overlay">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <div class="modal-header">
+            <h2>Contact Sonu Kumar</h2>
+            <p id="contactSiteName">website.com</p>
+        </div>
+        <div class="social-grid">
+            <a href="https://wa.me/919625200288" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/+919625200288" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-tg"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="tel:+919625200288" rel="nofollow" class="social-btn"><i class="fas fa-phone-alt"></i> Call Now</a>
+            <a href="mailto:linkproutreach@gmail.com" rel="nofollow" class="social-btn btn-em"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://www.linkedin.com/in/seowithsonu/" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-li"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://www.facebook.com/seowithsonu" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://instagram.com/seowithsonu" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-in"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.youtube.com/@seowithsonu" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-yt"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.reddit.com/user/seowithsonu" target="_blank" rel="nofollow noopener noreferrer" class="social-btn btn-rd"><i class="fab fa-reddit-alien"></i> Reddit</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Google Sheets CSV URL initialization
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR7sJ6QCTOy0iDfxYDb-Qv7FYX14Q0h8yNCu_spQTMenVVjfbdNy2q9_NuWRadsIvTZDKzim0Bn_oXD/pub?output=csv";
+
+let DATA = [];
+let currentFilteredData = []; 
+let currentPage = 1;
+const rowsPerPage = 20;
+
+const marketKeys = [
+    { label: 'Vefogix', key: 'vefogix' },
+    { label: 'Adsy', key: 'adsy' },
+    { label: 'PRNews', key: 'prnews' },
+    { label: 'PRPosting', key: 'prposting' },
+    { label: 'GuestPostLinks', key: 'guestpostlinks' },
+    { label: 'Bazoom', key: 'bazoom' },
+    { label: 'Icopify', key: 'icopify' },
+    { label: 'Collaborator', key: 'collaborator' },
+    { label: 'Whitepress', key: 'whitepress' },
+    { label: 'LinkPublishers', key: 'linkpublishers' },
+    { label: 'LinksManagement', key: 'linksmanagement' }
+];
+
+fetch(CSV_URL)
+  .then(r => r.text())
+  .then(csv => {
+    Papa.parse(csv, {
+      header: true, skipEmptyLines: true,
+      transformHeader: h => h.toLowerCase().trim().replace(/[\s_]+/g, ''),
+      complete: res => {
+        DATA = res.data;
+        document.getElementById("status").innerText = `⚡ ${DATA.length} Sites Ready`;
+        populateDropdowns();
+        renderTable();
+      }
+    });
+  });
+
+function populateDropdowns() {
+    const niches = [...new Set(DATA.map(d => d.niche).filter(Boolean))].sort();
+    const countries = [...new Set(DATA.map(d => d.country).filter(Boolean))].sort();
+    const nicheEl = document.getElementById('niche');
+    const countryEl = document.getElementById('country');
+    niches.forEach(n => nicheEl.innerHTML += `<option value="${n}">${n}</option>`);
+    countries.forEach(c => countryEl.innerHTML += `<option value="${c}">${c}</option>`);
+}
+
+const getNum = (v) => parseFloat(String(v).replace(/[^0-9.]/g, '')) || 0;
+
+const getVal = (row, k) => {
+    if (k === 'follow') return row['linkfollow'] || row['follow'] || row['linktype'] || row['type'] || "-";
+    if (k === 'restricted') return row['restrictedniches'] || row['restricted'] || "-";
+    return row[k] || "-";
+};
+
+function renderTable(resetPage = true) {
+    if (resetPage) currentPage = 1;
+    const s = document.getElementById('search').value.toLowerCase();
+    const selNiche = document.getElementById('niche').value;
+    const selCountry = document.getElementById('country').value;
+    const minDA = getNum(document.getElementById('minDA').value);
+    const minDR = getNum(document.getElementById('minDR').value);
+    const minTraff = getNum(document.getElementById('minTraffic').value);
+    const maxP = getNum(document.getElementById('maxPrice').value) || 999999;
+
+    currentFilteredData = DATA.filter(d => {
+        const site = (d.websites || d.website || "").toLowerCase();
+        if (s && !site.includes(s)) return false;
+        if (selNiche !== "All" && d.niche !== selNiche) return false;
+        if (selCountry !== "All" && d.country !== selCountry) return false;
+        if (getNum(d.da) < minDA) return false;
+        if (getNum(d.dr) < minDR) return false;
+        if (getNum(d.traffic) < minTraff) return false;
+        if (getNum(d.ownprice) > maxP) return false;
+        return true;
+    });
+
+    const tbody = document.getElementById('rows');
+    const start = (currentPage - 1) * rowsPerPage;
+    const pageData = currentFilteredData.slice(start, start + rowsPerPage);
+
+    let html = "";
+    pageData.forEach((d, idx) => {
+        const fullIdx = start + idx;
+        const rawUrl = d.websites || d.website || "";
+        const displayUrl = rawUrl.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+        const url = rawUrl.startsWith('http') ? rawUrl : 'https://' + rawUrl;
+        const favicon = `https://www.google.com/s2/favicons?domain=${displayUrl}&sz=32`;
+        
+        html += `
+            <tr style="animation: slideUp ${0.3 + (idx * 0.02)}s ease-out">
+                <td>
+                    <a href="${url}" target="_blank" rel="nofollow sponsored ugc noopener noreferrer" class="site-link">
+                        <img src="${favicon}" onerror="this.style.display='none'" loading="lazy">
+                        ${displayUrl}
+                    </a>
+                </td>
+                <td class="metric-val">${getVal(d, 'da')}</td>
+                <td class="metric-val">${getVal(d, 'dr')}</td>
+                <td class="metric-val">${getVal(d, 'traffic')}</td>
+                <td><span class="badge badge-country">${getVal(d, 'country')}</span></td>
+                <td><span class="badge badge-niche">${getVal(d, 'niche')}</span></td>
+                <td><span class="badge badge-type">${getVal(d, 'type')}</span></td>
+                <td>${getVal(d, 'follow')}</td>
+                <td title="${getVal(d, 'restricted')}" style="max-width:80px; overflow:hidden; text-overflow:ellipsis; cursor:help; color:var(--text-muted);">${getVal(d, 'restricted')}</td>
+                <td class="price-tag">$${getNum(d.ownprice)}</td>
+                <td>
+                    <div class="action-box">
+                        <button class="btn-buy" onclick="openBuy(${fullIdx})">BUY</button>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <span class="compare-label">Compare Price</span>
+                            <button class="btn-offer" onclick="openOffer(${fullIdx})">OFFER</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    tbody.innerHTML = html || '<tr><td colspan="11" style="text-align:center; padding:100px; color:var(--text-muted); font-size:16px;">No sites match your current filters.</td></tr>';
+    renderPagination();
+}
+
+function openBuy(index) {
+    const item = currentFilteredData[index];
+    const siteName = (item.websites || item.website || "").replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+    document.getElementById('contactSiteName').innerText = "Inquiry for: " + siteName;
+    document.getElementById('contactModal').style.display = 'flex';
+}
+
+function openOffer(index) {
+    const item = currentFilteredData[index];
+    const siteName = (item.websites || item.website || "").replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+    document.getElementById('offerSiteName').innerText = siteName;
+    
+    let compHtml = `
+        <div class="comparison-row our-price">
+            <span class="comp-label"><i class="fas fa-star"></i> OUR SPECIAL PRICE</span>
+            <span class="comp-value">$${getNum(item.ownprice)}</span>
+        </div>
+    `;
+
+    marketKeys.forEach(m => {
+        const val = item[m.key];
+        if(val && val !== "-" && val !== "0" && val !== "0.00") {
+            compHtml += `
+                <div class="comparison-row">
+                    <span class="comp-label">${m.label}</span>
+                    <span class="comp-value">${val}</span>
+                </div>
+            `;
+        }
+    });
+
+    document.getElementById('priceComparisonList').innerHTML = compHtml;
+    document.getElementById('offerModal').style.display = 'flex';
+}
+
+function closeModals() {
+    document.getElementById('offerModal').style.display = 'none';
+    document.getElementById('contactModal').style.display = 'none';
+}
+
+function renderPagination() {
+    const totalPages = Math.ceil(currentFilteredData.length / rowsPerPage);
+    const pagEl = document.getElementById('pagination');
+    if (totalPages <= 1) { pagEl.innerHTML = ""; return; }
+    
+    let btns = '';
+    btns += `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i> Prev</button>`;
+    
+    const range = 2;
+    for(let i=1; i<=totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - range && i <= currentPage + range)) {
+            btns += `<button class="page-btn ${i===currentPage?'active':''}" onclick="changePage(${i})">${i}</button>`;
+        } else if (i === currentPage - (range + 1) || i === currentPage + (range + 1)) {
+            btns += `<span style="padding: 0 5px; color: var(--text-muted); font-weight:800;">...</span>`;
+        }
+    }
+
+    btns += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next <i class="fas fa-chevron-right"></i></button>`;
+    
+    pagEl.innerHTML = btns;
+}
+
+function changePage(p) { 
+    const totalPages = Math.ceil(currentFilteredData.length / rowsPerPage);
+    if(p < 1 || p > totalPages) return;
+    currentPage = p; 
+    renderTable(false); 
+    
+    // Smooth scroll sirf internal table container ke liye, browser window jump nahi karega
+    document.querySelector('.table-container').scrollTop = 0;
+}
+
+document.querySelectorAll('input, select').forEach(i => i.addEventListener('input', () => renderTable(true)));
+document.getElementById('reset').onclick = () => {
+    document.querySelectorAll('input, select').forEach(i => i.value = (i.tagName === 'SELECT' ? "All" : ""));
+    renderTable(true);
+};
+
+window.onclick = function(e) {
+    if (e.target.classList.contains('modal-overlay')) closeModals();
+}
+</script>
+</body>
+</html>
+

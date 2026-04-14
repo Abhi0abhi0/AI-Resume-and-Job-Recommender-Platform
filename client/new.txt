@@ -1,0 +1,34 @@
+EMAIL_HOST=smtp.tbesglobal.com
+EMAIL_PORT=587
+EMAIL_USER=navendudey16@gmail.com
+# EMAIL_PASS=lrxkyarpcsocgagh
+# TO_EMAIL=tutun@tbesglobal.com
+MONGODB_URI = "mongodb://harsh:harsh@unifiedcampus-shard-00-00.i5fit.mongodb.net:27017,unifiedcampus-shard-00-01.i5fit.mongodb.net:27017,unifiedcampus-shard-00-02.i5fit.mongodb.net:27017/tbes?ssl=true&replicaSet=atlas-ivxkaa-shard-0&authSource=admin&retryWrites=true"
+# EMAIL_USER=harshkhandelwal597@gmail.com
+# EMAIL_PASS=gnqwuwqbwqdmgxex
+EMAIL_USER=thebimengineeringstudio@gmail.com
+EMAIL_PASS=hydxiqkvvqibxdae
+TO_EMAIL1=info@tbesglobal.com
+TO_EMAIL2=hr@tbesglobal.com 
+
+CLOUDINARY_CLOUD_NAME=dcha7gy9o
+CLOUDINARY_API_KEY=799978135178697
+CLOUDINARY_API_SECRET=7FYBPqDEB5VToUtSuxTD42Ll7CQ
+
+
+# R2_ACCOUNT_ID=6f5fb25a5b4cab3a1c4da97149eb9cb5
+# R2_ACCESS_KEY_ID=a33507880561d1cbd1fddfe740ead46c
+# R2_SECRET_ACCESS_KEY=1702910cc9a80c7cde5483fa72f431695935c8289aa55f1a76c2dc3a196caa5b
+# R2_BUCKET_NAME=tbes
+# R2_PUBLIC_URL=https://pub-4cdb7dd8dbec4bceb0da2ef6bd94df2a.r2.dev
+
+
+
+
+# S3 ID = https://60c8b9d5c8438c01f7b06163d8423674.r2.cloudflarestorage.com
+
+R2_ACCOUNT_ID=60c8b9d5c8438c01f7b06163d8423674
+R2_ACCESS_KEY_ID=5fa7399c05f26a7b85f10c7e33a852a6
+R2_SECRET_ACCESS_KEY=865fa5cfd691dccf5b1eedc2dd34ecea43c32dd5527cfa2fee015640671ae7c6
+R2_BUCKET_NAME=tbes
+R2_PUBLIC_URL=https://pub-9c54d1e054af43d9821423de9ea62b4a.r2.dev
